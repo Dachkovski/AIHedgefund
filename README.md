@@ -12,7 +12,7 @@ The app delivers:
 * [x] Easy to use and modify software architecture 
 * [x] Based on tensorflow serving which supports serving and inference of multiple models with GPU acceleration
 
-The main challenge as for all trading bots is to predict the direction of the price action movement. To find out how the transformer network performs in this field, I chose  "accuracy" as a metric (which is usually used in classification tasks). Here a success is defined that the direction of the prediction is the same, as the actual values for the according trading day.
+The main challenge as for all trading bots is to predict the direction of the price action movement. To find out how the transformer network performs in this field, I chose  "accuracy" as a metric. Here a success is defined that the direction of the prediction is the same, as the actual values for the according trading day.
 
 ## Installation
 
@@ -65,6 +65,8 @@ Check out the web app in [http://127.0.0.1:3001](http://127.0.0.1:3001) in web b
 
 ## Software Architecture
 The app (client) uses Tensorflow serving to deploy, serve and query the model.
+
+The following software architecture description stems from [Source](https://github.com/llSourcell/Make_Money_with_Tensorflow_2.0).
 ![serving_architecture](./frontend/static/images/serving_architecture.svg)
 
 TensorFlow Serving is a flexible, high-performance serving system for machine learning models, designed for production environments.
@@ -86,11 +88,10 @@ Let's say your service uses multiple models written in different versions of Ten
 
 You could of course wrap one model into one API. Then you would have one service per model and you can run different services on different hardware. Perfect! Except, this is what TensorFlow Serving ModelServer is doing for you. So don’t go wrap an API around your Python code (where you’ve probably imported the entire tf library, tf.contrib, opencv, pandas, numpy, …). TensorFlow Serving ModelServer does that for you. 
 
-The software architectur was taken from [Source](https://github.com/llSourcell/Make_Money_with_Tensorflow_2.0).
 
 ## Model Architecture
 
-The model estimator was taken from [Kaggle](https://www.kaggle.com/shujian/transformer-with-lstm) and adopted to predict Gold prices.
+As estimator a transformer neural net was taken from [Kaggle](https://www.kaggle.com/shujian/transformer-with-lstm) and adopted to predict Gold prices. It was trained for 300 epochs.
 
 ![transformer](./frontend/static/images/transformer.png)
 
@@ -115,10 +116,10 @@ The transformer model expects the last 60 days of scaled data (between 0 and 1) 
 
 ![scaled_chart](./frontend/static/images/scaled_chart.png)
 
-Each moving window is saved in a new DataFrame as Input values for the model.
-The predicted value of the model is then rescaled back to initial magnitude through inverse transformation.
+Each moving window is saved in a new DataFrame as input data point for the model.
 
-## Results
+
+## Results Signal Prediction
 
 The following chart shows the model performance on the held back test data set: 
 ![prediction_test](./frontend/static/images/prediction_test.png)
@@ -126,3 +127,9 @@ The following chart shows the model performance on the held back test data set:
 The accuracy of the prediction is: 0.55. This means, that the prediction accuracy of the model is 5% above coincidence.
 
 ## Conclusion
+
+The prediction of stock prices is one of the most difficult tasks in economics and especially in machine learning. Furthermore, successful models tend to become inaccurate with time, so that temporary gains not a guarantee to succeed in the future. 
+
+Thus one improvement could be the implementation of continouus learning model pipeline, which adopts the models to new incoming data. 
+Besides, the model uses only the time series of gold prices. The accuracy may be improved by including more features (as the stocequity and stock market is a strongly interdependent system) and fundamental macro economics data (inflation, FED balance sheet, etc.) 
+
