@@ -12,10 +12,12 @@ The app delivers:
 * [x] Easy to use and modify software architecture 
 * [x] Based on tensorflow serving which supports serving and inference of multiple models with GPU acceleration
 
+The main challenge as for all trading bots is to predict the direction of the price action movement. To find out how the transformer network performs in this field, I chose  "accuracy" as a metric (which is usually used in classification tasks). Here a success is defined that the direction of the prediction is the same, as the actual values for the according trading day.
 
 ## Installation
 
-The web app consists of two components: a frontend with the web user interface, and the backend running a model server with an administrator user interface called 'simple tensorflow serving' [source code](https://github.com/dachkovski/simple_tensorflow_serving)
+The web app consists of two components: 
+A frontend with the web user interface, and a backend running a model server with an administrator user interface called 'simple tensorflow serving' [source code](https://github.com/dachkovski/simple_tensorflow_serving)
 
 Install the backend server with:
 
@@ -33,7 +35,7 @@ bazel build simple_tensorflow_serving:server
 The frontend app doesnt need an installation. But it needs some packages that are installed with:
 
 ```bash
-pip install -r ./frondend/requirements.txt
+pip install -r ../frontend/requirements.txt
 
 ```
 
@@ -43,18 +45,29 @@ pip install -r ./frondend/requirements.txt
 Start the backend server with the TensorFlow [SavedModel](https://www.tensorflow.org/programmers_guide/saved_model).
 
 ```bash
-simple_tensorflow_serving --model_base_path="./backend/models/transformer"
+cd ../simple_tensorflow_serving
+simple_tensorflow_serving --model_base_path="./models/transformer"
 ```
 
-Check out the dashboard in [http://127.0.0.1:8500](http://127.0.0.1:8500) in web browser.
+Check out the admin dashboard in [http://127.0.0.1:8500](http://127.0.0.1:8500) in web browser.
  
-![dashboard](./images/dashboard.png)
+![dashboard](./simple_tensorflow_serving/images/dashboard.png)
 
 Start the frontend web app with:
 
 ```bash
-cd frontend
-python predictor.py
+python ./frontend/predictor.py
 ```
 
+Check out the web app in [http://127.0.0.1:3001](http://127.0.0.1:3001) in web browser.
+ 
+![Frontend](./frontend/static/images/frontend.png)
 
+
+## Analysis
+
+## Methodology
+
+## Results
+
+## Conclusion
