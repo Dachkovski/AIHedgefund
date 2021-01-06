@@ -51,7 +51,7 @@ simple_tensorflow_serving --model_base_path="./models/transformer"
 
 Check out the admin dashboard in [http://127.0.0.1:8500](http://127.0.0.1:8500) in web browser.
  
-![dashboard](./simple_tensorflow_serving/images/dashboard.png)
+![dashboard](https://github.com/Dachkovski/simple_tensorflow_serving/blob/9064944828d35f1c30e2dcd82f409802ad5f59d3/images/dashboard.png)
 
 Start the frontend web app with:
 
