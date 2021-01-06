@@ -61,17 +61,17 @@ python ./frontend/predictor.py
 
 Check out the web app in [http://127.0.0.1:3001](http://127.0.0.1:3001) in web browser.
  
-![serving_architecture](./frontend/static/images/serving_architecture.svg)
+![frontend](./frontend/static/images/frontend.png)
 
 ## Software Architecture
 The app (client) uses Tensorflow serving to deploy, serve and query the model.
-![tf_serving](./frontend/static/images/tf_serving.jpg)
-
-![tf_serving](./frontend/static/images/tf_serving.jpg)
+![serving_architecture](./frontend/static/images/serving_architecture.svg)
 
 TensorFlow Serving is a flexible, high-performance serving system for machine learning models, designed for production environments.
 TensorFlow Serving makes it easy to deploy new algorithms and experiments, while keeping the same server architecture and APIs.
 TensorFlow Serving provides out of the box integration with TensorFlow models, but can be easily extended to serve other types of models.
+![tf_serving](./frontend/static/images/tf_serving.jpg)
+
 Wait, why use Serving instead of a regular web server framework like Flask or Django?
 TensorFlow-Serving allows developers to integrate client requests and data with deep learning models served independently of client systems.
 Benefits of this include clients being able to make inferences on data without actually having to install TensorFlow or even have any contact with the actual model, and the ability to serve multiple clients with one instance of a model.
@@ -94,8 +94,7 @@ The model estimator was taken from [Kaggle](https://www.kaggle.com/shujian/trans
 
 ![transformer](./frontend/static/images/transformer.png)
 
-
-## Analysis
+## Data Analysis
 
 As data source for obtaining the price data the yahoo finance API is implemented in the web app. With every call the app queries the API and gets current price data. 
 ```
@@ -111,7 +110,7 @@ Then the app calculates a daily Mid price, that is the mean of High and Low dail
 
 ![gold_chart](./frontend/static/images/gold_chart.png)
 
-## Methodology
+## Prediction Methodology
 The transformer model expects the last 60 days of scaled data (between 0 and 1) and outputs the prediction for day 61. Therefore the data is rescaled with a moving window:
 
 ![scaled_chart](./frontend/static/images/scaled_chart.png)
