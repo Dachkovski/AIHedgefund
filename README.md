@@ -30,13 +30,11 @@ bazel build simple_tensorflow_serving:server
 
 ```
 
-
-```
-
 The frontend app doesnt need an installation. But it needs some packages that are installed with:
 
 ```bash
 pip install -r ./frondend/requirements.txt
+
 ```
 
 

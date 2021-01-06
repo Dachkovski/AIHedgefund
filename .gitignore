@@ -128,3 +128,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+simple_tensorflow_serving
+simple_tensorflow_serving
