@@ -80,9 +80,12 @@ Then the app calculates a daily Mid price, that is the mean of High and Low dail
 
 ![gold_chart](./frontend/static/images/gold_chart.png)
 
-For the prediction of the next day the model expects the last 60 days of price data and outputs the prediction for day 61.
-
 ## Methodology
+The transformer model expects the last 60 days of scaled data (between 0 and 1) and outputs the prediction for day 61. Therefore the data is rescaled with a moving window:
+
+![scaled_chart](./frontend/static/images/scaled_chart.png)
+
+Each moving window is saved in a new DataFrame as Input values for the model.
 
 ## Results
 
