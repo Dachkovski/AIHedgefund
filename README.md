@@ -66,7 +66,7 @@ Check out the web app in [http://127.0.0.1:3001](http://127.0.0.1:3001) in web b
 ## Software Architecture
 The app uses Tensorflow serving to deploy, serve and query the transformer neural net.
 
-![tf_serving](./frontend/static/images/tf_serving.png)
+![tf_serving](./frontend/static/images/tf_serving.jpg)
 
 TensorFlow Serving is a flexible, high-performance serving system for machine learning models, designed for production environments.
 TensorFlow Serving makes it easy to deploy new algorithms and experiments, while keeping the same server architecture and APIs.
