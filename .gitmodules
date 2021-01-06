@@ -1,3 +1,0 @@
-[submodule "simple_tensorflow_serving"]
-	path = simple_tensorflow_serving
-	url = https://github.com/Dachkovski/simple_tensorflow_serving.git
