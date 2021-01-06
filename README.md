@@ -20,11 +20,14 @@ The web app consists of two components: a frontend with the web user interface, 
 Install the backend server with:
 
 ```bash
-python ./simple_tensorflow_serving/setup.py install
+cd simple_tensorflow_serving
 
-python ./simple_tensorflow_serving/setup.py develop
+python ./setup.py install
 
-bazel build simple_tensorflow_serving/simple_tensorflow_serving:server
+python ./setup.py develop
+
+bazel build simple_tensorflow_serving:server
+
 ```
 
 
