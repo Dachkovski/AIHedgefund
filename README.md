@@ -61,10 +61,26 @@ python ./frontend/predictor.py
 
 Check out the web app in [http://127.0.0.1:3001](http://127.0.0.1:3001) in web browser.
  
-![Frontend](./frontend/static/images/frontend.png)
+![frontend](./frontend/static/images/frontend.png)
 
 
 ## Analysis
+
+As data source for obtaining the price data the yahoo finance API is implemented in the web app. With every call the app queries the API and gets current price data. 
+```
+                  Open        High         Low       Close    Volume  ...
+Date                                                                   
+2020-11-06  183.399994  183.529999  182.190002  183.190002  10378300   
+2020-11-09  176.419998  176.449997  173.639999  175.080002  29800700   
+2020-11-10  176.750000  176.910004  175.660004  175.660004  11728500   
+2020-11-11  174.699997  175.279999  174.440002  174.899994   9008500   
+2020-11-12  176.039993  176.770004  175.839996  175.960007   7167900   
+```
+Then the app calculates a daily Mid price, that is the mean of High and Low daily prices. 
+
+![gold_chart](./frontend/static/images/gold_chart.png)
+
+For the prediction of the next day the model expects the last 60 days of price data and outputs the prediction for day 61.
 
 ## Methodology
 
