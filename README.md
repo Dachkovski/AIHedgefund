@@ -86,7 +86,7 @@ Let's say your service uses multiple models written in different versions of Ten
 
 You could of course wrap one model into one API. Then you would have one service per model and you can run different services on different hardware. Perfect! Except, this is what TensorFlow Serving ModelServer is doing for you. So don’t go wrap an API around your Python code (where you’ve probably imported the entire tf library, tf.contrib, opencv, pandas, numpy, …). TensorFlow Serving ModelServer does that for you. 
 
-[Software Architecture Source](https://github.com/llSourcell/Make_Money_with_Tensorflow_2.0)
+The software architectur was taken from [Source](https://github.com/llSourcell/Make_Money_with_Tensorflow_2.0).
 
 ## Model Architecture
 
@@ -98,13 +98,13 @@ The model estimator was taken from [Kaggle](https://www.kaggle.com/shujian/trans
 
 As data source for obtaining the price data the yahoo finance API is implemented in the web app. With every call the app queries the API and gets current price data. 
 ```
-                  Open        High         Low       Close    Volume  ...
-Date                                                                   
-2020-11-06  183.399994  183.529999  182.190002  183.190002  10378300   
-2020-11-09  176.419998  176.449997  173.639999  175.080002  29800700   
-2020-11-10  176.750000  176.910004  175.660004  175.660004  11728500   
-2020-11-11  174.699997  175.279999  174.440002  174.899994   9008500   
-2020-11-12  176.039993  176.770004  175.839996  175.960007   7167900   
+                   Open         High          Low        Close  Volume  ...
+Date                                                                     
+2020-11-06  1940.800049  1958.800049  1940.800049  1950.300049     304   
+2020-11-09  1955.599976  1963.199951  1847.099976  1853.199951     745   
+2020-11-10  1879.300049  1885.300049  1871.199951  1875.400024     276   
+2020-11-11  1878.800049  1878.800049  1855.500000  1860.699951     222   
+2020-11-12  1869.000000  1878.500000  1866.599976  1872.599976     220  
 ```
 Then the app calculates a daily Mid price, that is the mean of High and Low daily prices. 
 
@@ -116,7 +116,13 @@ The transformer model expects the last 60 days of scaled data (between 0 and 1) 
 ![scaled_chart](./frontend/static/images/scaled_chart.png)
 
 Each moving window is saved in a new DataFrame as Input values for the model.
+The predicted value of the model is then rescaled back to initial magnitude through inverse transformation.
 
 ## Results
+
+The following chart shows the model performance on the held back test data set: 
+![prediction_test](./frontend/static/images/prediction_test.png)
+
+The accuracy of the prediction is: 0.55. This means, that the prediction accuracy of the model is 5% above coincidence.
 
 ## Conclusion
