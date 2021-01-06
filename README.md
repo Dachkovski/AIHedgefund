@@ -12,7 +12,7 @@ The app delivers:
 * [x] Easy to use and modify software architecture 
 * [x] Based on tensorflow serving which supports serving and inference of multiple models with GPU acceleration
 
-The main challenge as for all trading bots is to predict the direction of the price action movement. To find out how the transformer network performs in this field, I chose  "accuracy" as a metric. Here a success is defined that the direction of the prediction is the same, as the actual values for the according trading day.
+The main challenge as for all trading bots is to predict the direction of the price action movement. To find out how the transformer network performs in this field, I chose  "accuracy" as a metric. Here a success is defined that the direction of the prediction is the same with the actual value for the according trading day.
 
 ## Installation
 
