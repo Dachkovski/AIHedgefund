@@ -1,4 +1,4 @@
-# AI Prediction Web App for rapid Prototyping
+# AI Time Series Prediction Web App for rapid Prototyping
 
 ## Introduction
 This project aims to build a multi purpose web app template, that makes developement of rapid prototype web apps for time series predictions easy.
