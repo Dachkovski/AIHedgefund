@@ -60,6 +60,9 @@ Check out the web app in [http://127.0.0.1:3001](http://127.0.0.1:3001) in web b
  
 ![frontend](./frontend/static/images/frontend.png)
 
+## Model Developement and Scoring
+For Developing a new model open the jupiter notebook. In there, you'll find a detailed tutorial, which steps to perform to get a new model.
+
 ## Software Architecture
 The app consists of a frontend (client) and a backend, that uses simple Tensorflow serving to deploy, serve and query the model.
 
