@@ -43,7 +43,7 @@ Start the backend server with the TensorFlow [SavedModel](https://www.tensorflow
 
 ```bash
 cd ../simple_tensorflow_serving
-simple_tensorflow_serving --model_base_path="./models/transformer"
+simple_tensorflow_serving --model_base_path="./models/lstm"
 ```
 
 Check out the admin dashboard in [http://127.0.0.1:8500](http://127.0.0.1:8500) in web browser.
