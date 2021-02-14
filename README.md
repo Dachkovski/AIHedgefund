@@ -1,18 +1,15 @@
-# AI Gold Price Predictor
-
-![](https://www.artnet.de/WebServices/images/ll00357lldm1VJFgETeR3CfDrCWvaHBOcBubF/hajime-sorayama-sexy-robot-gold-be@rbrick-1000.jpg)
+# AI Prediction Web App for rapid Prototyping
 
 ## Introduction
+This project aims to build a multi purpose web app template, that makes developement of rapid prototype web apps for time series predictions easy.
 
-AI Gold Price Predictor is an web app that predicts the price of Gold for the next trading day. The prediction is made by a state-of-the-art machine learning model based on a transformer neural network. Its purpose is to help traders with their investment decisions with a trustworthy and free open source software.
+As example use case I chose Gold price prediction.
 
 The app delivers:
-* [x] Free trading helper 
-* [x] State-of-the-art AI with significant prediction accuracy
-* [x] Easy to use and modify software architecture 
+* [x] Easy to setup time series prediction web app
+* [x] Easy ML development and deployment pipeline for "quick and dirty" prototypes
 * [x] Based on tensorflow serving which supports serving and inference of multiple models with GPU acceleration
 
-The main challenge as for all trading bots is to predict the direction of the price action movement. To find out how the transformer network performs in this field, I chose  "accuracy" as a metric. Here a success is defined that the direction of the prediction is the same with the actual value for the according trading day.
 
 ## Installation
 
@@ -64,11 +61,12 @@ Check out the web app in [http://127.0.0.1:3001](http://127.0.0.1:3001) in web b
 ![frontend](./frontend/static/images/frontend.png)
 
 ## Software Architecture
-The app (client) uses Tensorflow serving to deploy, serve and query the model.
+The app consists of a frontend (client) and a backend, that uses simple Tensorflow serving to deploy, serve and query the model.
 
 The following software architecture description stems from [Source](https://github.com/llSourcell/Make_Money_with_Tensorflow_2.0).
 ![serving_architecture](./frontend/static/images/serving_architecture.svg)
 
+<cite>
 TensorFlow Serving is a flexible, high-performance serving system for machine learning models, designed for production environments.
 TensorFlow Serving makes it easy to deploy new algorithms and experiments, while keeping the same server architecture and APIs.
 TensorFlow Serving provides out of the box integration with TensorFlow models, but can be easily extended to serve other types of models.
@@ -87,49 +85,4 @@ If you start messing up your neat Docker images with heavy TensorFlow models, th
 Let's say your service uses multiple models written in different versions of TensorFlow. Using all those TensorFlow versions in your Python API at the same time is going to be a total mess.
 
 You could of course wrap one model into one API. Then you would have one service per model and you can run different services on different hardware. Perfect! Except, this is what TensorFlow Serving ModelServer is doing for you. So don’t go wrap an API around your Python code (where you’ve probably imported the entire tf library, tf.contrib, opencv, pandas, numpy, …). TensorFlow Serving ModelServer does that for you. 
-
-
-## Model Architecture
-
-As estimator a transformer neural net was taken from [Kaggle](https://www.kaggle.com/shujian/transformer-with-lstm) and adopted to predict Gold prices. It was trained for 300 epochs.
-
-![transformer](./frontend/static/images/transformer.png)
-
-## Data Analysis
-
-As data source for obtaining the price data the yahoo finance API is implemented in the web app. With every call the app queries the API and gets current price data. 
-```
-                   Open         High          Low        Close  Volume  ...
-Date                                                                     
-2020-11-06  1940.800049  1958.800049  1940.800049  1950.300049     304   
-2020-11-09  1955.599976  1963.199951  1847.099976  1853.199951     745   
-2020-11-10  1879.300049  1885.300049  1871.199951  1875.400024     276   
-2020-11-11  1878.800049  1878.800049  1855.500000  1860.699951     222   
-2020-11-12  1869.000000  1878.500000  1866.599976  1872.599976     220  
-```
-Then the app calculates a daily Mid price, that is the mean of High and Low daily prices. 
-
-![gold_chart](./frontend/static/images/gold_chart.png)
-
-## Prediction Methodology
-The transformer model expects the last 60 days of scaled data (between 0 and 1) and outputs the prediction for day 61. Therefore the data is rescaled with a moving window:
-
-![scaled_chart](./frontend/static/images/scaled_chart.png)
-
-Each moving window is saved in a new DataFrame as input data point for the model.
-
-
-## Results Signal Prediction
-
-The following chart shows the model performance on the held back test data set: 
-![prediction_test](./frontend/static/images/prediction_test.png)
-
-The accuracy of the prediction is: 0.55. This means, that the prediction accuracy of the model is 5% above coincidence.
-
-## Conclusion
-
-The prediction of stock prices is one of the most difficult tasks in economics and especially in machine learning. Furthermore, successful models tend to become inaccurate with time, so that temporary gains not a guarantee to succeed in the future. 
-
-Thus one improvement could be the implementation of continouus learning model pipeline, which adopts the models to new incoming data. 
-Besides, the model uses only the time series of gold prices. The accuracy may be improved by including more features (as the stocequity and stock market is a strongly interdependent system) and fundamental macro economics data (inflation, FED balance sheet, etc.) 
-
+</cite>
